@@ -245,6 +245,75 @@ public class BookmarksHandlerTest {
         assertTrue(bookmarks.getAllBookmarks().isEmpty());
     }
 
+    @Test
+    public void searchBookmarkByKeywordOneResult() throws MalformedURLException
+    {
+        //Arrange
+        String keyword = "search";
+        URL url = new URL("http://www.google.com");
+        URL url1 = new URL("http://www.orf.at");
+        URL url2 = new URL("http://www.facebook.com");
+        List<String> foundBookmarks;
+
+
+        bookmarks.addTagtoBookmark(url, "search");
+        bookmarks.addTagtoBookmark(url1, "news");
+        bookmarks.addTagtoBookmark(url2, "social media");
+
+        //Act
+        foundBookmarks = bookmarks.searchBookmarksByKeyword(keyword);
+
+
+        //Assert
+        assertTrue(foundBookmarks.contains("http://www.google.com"));
+    }
+
+    @Test
+    public void searchBookmarkByKeywordNoResult() throws MalformedURLException
+    {
+        //Arrange
+        String keyword = "search";
+        List<String> foundBookmarks;
+        URL url = new URL("http://www.google.com");
+        URL url1 = new URL("http://www.bing.com");
+        URL url2 = new URL("http://www.facebook.com");
+
+        bookmarks.addTagtoBookmark(url, "google");
+        bookmarks.addTagtoBookmark(url1, "bing");
+        bookmarks.addTagtoBookmark(url2, "social media");
+
+        //Act
+        foundBookmarks = bookmarks.searchBookmarksByKeyword(keyword);
+
+        //Assert
+        assertTrue(foundBookmarks.isEmpty());
+    }
+
+    @Test
+    public void searchBookmarkByKeywordMoreThanOneResult() throws MalformedURLException
+    {
+        //Arrange
+        String keyword = "search";
+        URL url = new URL("http://www.google.com");
+        URL url1 = new URL("http://www.bing.com");
+        URL url2 = new URL("http://www.facebook.com");
+        List<String> foundBookmarks;
+
+
+        bookmarks.addTagtoBookmark(url, "search");
+        bookmarks.addTagtoBookmark(url1, "search");
+        bookmarks.addTagtoBookmark(url2, "social media");
+        //List<String> expectedfoundBookmarks = new ArrayList<>(Arrays.asList("http://www.bing.com", "http://www.google.com"));
+
+        //Act
+        foundBookmarks = bookmarks.searchBookmarksByKeyword(keyword);
+
+
+        //Assert
+        assertTrue(foundBookmarks.contains("http://www.google.com"));
+        assertTrue(foundBookmarks.contains("http://www.bing.com"));    }
+    }
+
 }
 
 
