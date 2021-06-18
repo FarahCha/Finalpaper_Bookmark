@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.examples.tdd.basic.domain;
 
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.*;
 
 import java.net.MalformedURLException;

@@ -174,7 +174,7 @@ public class BookmarksHandlerTest {
         assertEquals(0, bookmarkSecure);
     }
 
-    @Test
+/*    @Test
     public void removeTagFromSelectedBookmark() throws MalformedURLException {
         //Arrange
         URL url = new URL("http://www.google.com");
@@ -191,9 +191,9 @@ public class BookmarksHandlerTest {
         //Assert
         assertNull(noTag);
         assertEquals(expectedWithTag, withTag);
-    }
+    }*/
 
-    @Test
+ /*   @Test
     public void tagToRemoveDoesNotExist() throws MalformedURLException {
         //Arrange
         URL url = new URL("http://www.google.com");
@@ -203,7 +203,7 @@ public class BookmarksHandlerTest {
         assertThrows(NoSuchElementException.class, () -> bookmarks.removeTagFromBookmark(url, "yahoo"));
     }
 
-    @Test
+     @Test
     public void removeExistingBookmark() throws MalformedURLException {
         //Arrange
         List<URL> remainingBookmarks;
@@ -243,7 +243,7 @@ public class BookmarksHandlerTest {
         //Assert
         assertThrows(NoSuchElementException.class, () -> bookmarks.removeBookmark(url));
         assertTrue(bookmarks.getAllBookmarks().isEmpty());
-    }
+    } */
 
     @Test
     public void searchBookmarkByKeywordOneResult() throws MalformedURLException
@@ -311,9 +311,23 @@ public class BookmarksHandlerTest {
 
         //Assert
         assertTrue(foundBookmarks.contains("http://www.google.com"));
-        assertTrue(foundBookmarks.contains("http://www.bing.com"));    }
+        assertTrue(foundBookmarks.contains("http://www.bing.com"));
     }
 
+   @Test
+    public void searchBookmarkByKeywordNoBookmarks() throws MalformedURLException
+    {
+        //Arrange
+        String keyword = "search";
+        List<String> foundBookmarks;
+
+        //Act
+        foundBookmarks = bookmarks.searchBookmarksByKeyword(keyword);
+
+        //Assert
+        assertTrue(foundBookmarks.isEmpty());
+    }
 }
+
 
 
