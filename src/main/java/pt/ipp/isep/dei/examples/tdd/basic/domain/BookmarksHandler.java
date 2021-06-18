@@ -69,7 +69,7 @@ public class BookmarksHandler {
         return secureURLsList.size();
         }
 
-    public void removeTagFromBookmark(URL url, String tag) {
+    /*public void removeTagFromBookmark(URL url, String tag) {
         if (bookmarks.containsKey(url) && bookmarks.containsValue(tag)) {
             bookmarks.put(url, null);
         } else
@@ -92,5 +92,24 @@ public class BookmarksHandler {
         for (Map.Entry<URL, String> entry : bookmarks.entrySet())
             allBookmarks.add(entry.getKey());
         return allBookmarks;
+    } */
+
+    public List<String> searchBookmarksByKeyword(String keyword) {
+        List<String> foundBookmarks = new ArrayList<>();
+        if (!bookmarks.isEmpty()) {
+            Set entryset = bookmarks.entrySet();
+            Iterator it = entryset.iterator();
+            while (it.hasNext()) {
+                Entry entry = (Entry) it.next();
+                entry.getValue();
+                if (entry.getValue().equals(keyword)) {
+                    foundBookmarks.add(entry.getKey().toString());
+                }
+            }
+        }
+        else {
+            return Collections.emptyList();
+        }
+        return foundBookmarks;
     }
 }
